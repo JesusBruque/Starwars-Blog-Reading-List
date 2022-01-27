@@ -12,8 +12,7 @@ const Planets = () => {
 				return res.json();
 			})
 			.then((data) => {
-				console.log(data);
-				setListPlanets(data);
+				actions.setPlanets(data.results);
 			})
 			.catch((err) => {
 				console.log(err);

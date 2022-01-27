@@ -26,6 +26,8 @@ const Characters = () => {
 		getAllCharacters();
 	}, []);
 
+    
+
     return (
         <>
             <div>Characters</div>
