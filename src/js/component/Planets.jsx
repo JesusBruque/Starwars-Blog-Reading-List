@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Card from "../component/Card.jsx";
 import { getPlanets } from "../service/planets.js";
+import { Context } from "../store/appContext.js";
 
 const Planets = () => {
+
+	const { store, actions } = useContext(Context);
 
     const [listPlanets, setListPlanets] = useState([])
 

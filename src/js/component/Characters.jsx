@@ -5,7 +5,7 @@ import { Context } from "../store/appContext.js";
 
 const Characters = () => {
 
-    const {store, actions} = useContext(Context);
+    const { store, actions } = useContext(Context);
 
     const [listCharacters, setListCharacters] = useState([])
 
@@ -31,7 +31,7 @@ const Characters = () => {
     return (
         <>
             <div>Characters</div>
-            <Card/>
+			<Card />
         </>
         
     )
