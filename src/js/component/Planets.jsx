@@ -7,8 +7,6 @@ const Planets = () => {
 
 	const { store, actions } = useContext(Context);
 
-    const [listPlanets, setListPlanets] = useState([])
-
     const getAllPlanets = () => {
 		getPlanets()
 			.then((res) => {
@@ -16,12 +14,14 @@ const Planets = () => {
 			})
 			.then((data) => {
 				actions.setPlanets(data.results);
-				console.log(data);
+				console.log(data.results);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	};
+
+
 
 	useEffect(() => {
 		getAllPlanets();

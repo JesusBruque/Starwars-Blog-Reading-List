@@ -14,6 +14,7 @@ const Characters = () => {
 			})
 			.then((data) => {
 				actions.setCharacters(data.results);
+				console.log(data.results);
 			})
 			.catch((err) => {
 				console.log(err);

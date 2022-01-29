@@ -1,21 +1,21 @@
 import React, {useContext, useEffect} from "react";
 import { Context } from "../store/appContext.js";
 import { useParams } from "react-router-dom";
-import { getMoreInfoCharacters } from "../service/characters.js";
+import { getMoreInfoPlanets } from "../service/planets.js";
 
-const Info = () => {
+const InfoPlanets = () => {
 
     const params = useParams();
 
     const { store, actions } = useContext(Context);
 
-    const moreInfoCharacters = () => {
-		getMoreInfoCharacters(store.characters[params.id].url)
+    const moreInfoPlanets = () => {
+		getMoreInfoPlanets(store.Planets[params.id].url)
 			.then((res) => {
 				return res.json();
 			})
 			.then((data) => {
-                actions.setInfoCharacters(data.result.properties);
+                actions.setInfoPlanets(data.result);
                 console.log(store);
 			})
 			.catch((err) => {
@@ -23,8 +23,9 @@ const Info = () => {
 			});
 	};
 
+
     useEffect(() => {
-		moreInfoCharacters();
+        moreInfoPlanets();
 	}, []);
 
     return (
@@ -37,22 +38,22 @@ const Info = () => {
                     </div>
                     <div className="col-md-8 ">
                         <div className="card-body">
-                        <h4 className="card-title">{store.info.name}</h4>
+                        <h4 className="card-title">{}</h4>
                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
                         </div> 
                     </div>
                 </div>
                 <div className="card-footer border-danger bg-white row text-danger">
-                    <div className="col-sm-2">Name: {store.info.name}</div>
-                    <div className="col-sm-2">Birth Year: {store.info.birth_year}</div>
-                    <div className="col-sm-2">Gender: {store.info.gender}</div>
-                    <div className="col-sm-2">Height: {store.info.height} cm</div>
-                    <div className="col-sm-2">Skin Color: {store.info.skin_color}</div>
-                    <div className="col-sm-2">Eye Color: {store.info.eye_color}</div>
+                    <div className="col-sm-2">Name: </div>
+                    <div className="col-sm-2">Birth Year: </div>
+                    <div className="col-sm-2">Gender: </div>
+                    <div className="col-sm-2">Height: </div>
+                    <div className="col-sm-2">Skin Color: </div>
+                    <div className="col-sm-2">Eye Color: </div>
                 </div> 
             </div>
         </> 
     )
 }
 
-export default Info;
+export default InfoPlanets;
