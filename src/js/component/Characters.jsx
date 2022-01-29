@@ -7,8 +7,6 @@ const Characters = () => {
 
     const { store, actions } = useContext(Context);
 
-    const [listCharacters, setListCharacters] = useState([])
-
     const getAllCharacters = () => {
 		getCharacters()
 			.then((res) => {
@@ -26,12 +24,12 @@ const Characters = () => {
 		getAllCharacters();
 	}, []);
 
-    
-
     return (
         <>
             <div>Characters</div>
-			<Card />
+			{
+				store.characters.map((characters, index) => <Card key={index} name={characters.name} id={index}/>)
+			}
         </>
         
     )

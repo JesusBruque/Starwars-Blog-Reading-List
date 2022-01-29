@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			characters: [],
 			planets: [],
+			currentInfo: [],
 			
 		},
 		actions: {
@@ -15,9 +16,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setPlanets: (data) => {
 				const store = getStore();
 				setStore({...store, planets: data});
+				
 			},
+
+			setCurrentInfo: (data) => {
+				const store = getStore();
+				setStore({...store, currentInfo: data});
+				console.log(store);
+			}
 		}
 	};
+	
 };
 
 export default getState;

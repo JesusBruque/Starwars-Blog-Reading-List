@@ -1,5 +1,9 @@
-const URL = "https://www.swapi.tech/api/people";
+
 
 export const getCharacters = () => {
-	return fetch(URL);
+	return fetch("https://www.swapi.tech/api/people");
+};
+
+export const getMoreInfo = (url) => {
+	return fetch(url);
 };

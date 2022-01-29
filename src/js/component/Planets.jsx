@@ -16,6 +16,7 @@ const Planets = () => {
 			})
 			.then((data) => {
 				actions.setPlanets(data.results);
+				console.log(data);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -29,7 +30,9 @@ const Planets = () => {
     return (
         <>
             <div>Planets</div>
-            <Card/>
+            {
+				store.planets.map((planets, index) => <Card key={index} name={planets.name} />)
+			}
         </>
         
     )
