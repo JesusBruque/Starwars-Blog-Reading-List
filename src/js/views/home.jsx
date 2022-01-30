@@ -5,14 +5,10 @@ import "../../styles/home.css";
 
 export const Home = () => {
 	return (
-		<>	
-			<div className="row">
-				<Characters className=""/>
-			</div>
-			<div>
-				<Planets />	
-			</div>
+		<>
+			<Characters />
+			<Planets />
 		</>
-		
+
 	)
 };

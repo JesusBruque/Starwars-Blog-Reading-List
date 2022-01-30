@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
-import Card from "../component/Card.jsx";
+import { Card } from "../component/Card.jsx";
 import { getCharacters } from "../service/characters.js";
 import { Context } from "../store/appContext.js";
 
 const Characters = () => {
 
-    const { store, actions } = useContext(Context);
+	const { store, actions } = useContext(Context);
 
-    const getAllCharacters = () => {
+	const getAllCharacters = () => {
 		getCharacters()
 			.then((res) => {
 				return res.json();
@@ -25,15 +25,20 @@ const Characters = () => {
 		getAllCharacters();
 	}, []);
 
-    return (
-        <>
-            <div>Characters</div>
-			{
-				store.characters.map((characters, index) => <Card key={index} name={characters.name} id={index}/>)
-			}
-        </>
-        
-    )
+	return (
+		<>
+			<h1 className="text-danger">Characters</h1>
+			<div className="container testimonial-group">
+				<div className="row">
+					{
+						store.characters.map((characters, index) => <Card key={index} name={characters.name} id={index} />)
+					}
+				</div>
+			</div>
+
+		</>
+
+	)
 };
 
 export default Characters;

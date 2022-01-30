@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			characters: [],
 			planets: [],
 			info: [],
+			favourites: [],
 			
 		},
 		actions: {
@@ -26,7 +27,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setInfoPlanets: (data) => {
 				const store = getStore();
 				setStore({...store, info: data});
-			}
+			},
+
+			/* addFavourites: (like) => {
+				const store = getStore();
+				setStore({...store, favourites: [...store.favourites, like]})
+				console.log(store);
+			} */
 		}
 	};
 };
