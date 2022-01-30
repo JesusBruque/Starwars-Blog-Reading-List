@@ -29,11 +29,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({...store, info: data});
 			},
 
-			/* addFavourites: (like) => {
+			addFavourites: (favourites) => {
 				const store = getStore();
-				setStore({...store, favourites: [...store.favourites, like]})
+				setStore({...store, favourites: [...store.favourites, favourites]})
 				console.log(store);
-			} */
+			}
 		}
 	};
 };

@@ -13,7 +13,7 @@ export const Favourites = () => {
                 </button>
                 <ul className="dropdown-menu">
                     {
-                        store.favourites.map((favourites, index) => <li className="dropdown-item" key={index}>{favourites}</li>)
+                        store.favourites.map((favourites, index) => <li className="dropdown-item" key={index} favourites={favourites}/>)
                     }
                 </ul>
             </div>

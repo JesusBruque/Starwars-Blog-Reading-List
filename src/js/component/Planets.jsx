@@ -15,7 +15,7 @@ const Planets = () => {
 			})
 			.then((data) => {
 				actions.setPlanets(data.results);
-				console.log(data.results);
+				console.log(store);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -34,7 +34,7 @@ const Planets = () => {
 			<div className="container testimonial-group">
 				<div className="row p-3">
 					{
-					store.planets.map((planets, index) => <Card key={index} name={planets.name} />)
+					store.planets.map((planets, index) => <Card key={index} name={planets.name} type={planets}/>)
 					}
 				</div>
 			</div>

@@ -31,7 +31,7 @@ const Characters = () => {
 			<div className="container testimonial-group">
 				<div className="row">
 					{
-						store.characters.map((characters, index) => <Card key={index} name={characters.name} id={index} />)
+						store.characters.map((characters, index) => <Card key={index} name={characters.name} type={characters}/>)
 					}
 				</div>
 			</div>
