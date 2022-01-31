@@ -5,16 +5,13 @@ import { getMoreInfoCharacters } from "../service/characters.js";
 import { getMoreInfoPlanets } from "../service/planets.js";
 
 const Info = () => {
-    console.log(window.location.search);
-    const urlQueryString = new URLSearchParams(window.location.search);
-    const id = urlQueryString.get("id");
-    const name = urlQueryString.get("name");
-    console.log(id, name);
+    
+    const params = useParams();
 
     const { store, actions } = useContext(Context);
 
     const moreInfoCharacters = () => {
-        getMoreInfoCharacters(store.characters[params.id].url)
+        getMoreInfoCharacters(store.Characters[params.id].url)
             .then((res) => {
                 return res.json();
             })
@@ -28,7 +25,7 @@ const Info = () => {
     };
 
     /* const moreInfoPlanets = () => {
-          getMoreInfoPlanets(store.Planets[params.id].url)
+          getMoreInfoPlanets(store.planets[params.id].url)
               .then((res) => {
                   return res.json();
               })
@@ -52,7 +49,7 @@ const Info = () => {
                 <div className="row g-0 ">
                     <div className="col-md-4 p-auto">
                         <img
-                            src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+                            src={`https://starwars-visualguide.com/assets/img/characters/${params.id}.jpg`}
                             className="img-fluid rounded-start"
                             style={{ width: "300px", height: "400px" }}
                         />
