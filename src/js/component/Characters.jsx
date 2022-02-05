@@ -1,29 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Card } from "../component/Card.jsx";
-import { getCharacters } from "../service/characters.js";
+
 import { Context } from "../store/appContext.js";
+
+import "../../styles/horizontalScroll.css";
 
 const Characters = () => {
 
+	useEffect(() => {
+		actions.getCharacter();
+	}, []);
+
 	const { store, actions } = useContext(Context);
 
-	const getAllCharacters = () => {
-		getCharacters()
-			.then((res) => {
-				return res.json();
-			})
-			.then((data) => {
-				actions.setCharacters(data.results);
-				console.log(data.results);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
-
-	useEffect(() => {
-		getAllCharacters();
-	}, []);
 
 	return (
 		<>
@@ -31,7 +20,7 @@ const Characters = () => {
 			<div className="container testimonial-group">
 				<div className="row">
 					{
-						store.characters.map((characters, index) => <Card key={index} name={characters.name} type={characters}/>)
+						store.characters.map((character, index) => <Card key={index} name={character.name} id={character.uid} />)
 					}
 				</div>
 			</div>

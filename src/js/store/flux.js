@@ -1,32 +1,53 @@
+import { getCharacters, getInfoCharacter, getPlanets } from "../service/starWars.js";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			characters: [],
 			planets: [],
-			info: [],
 			favourites: [],
 			
 		},
 		actions: {
-
-			setCharacters: (data) => {
+			getCharacter() {
 				const store = getStore();
-				setStore({...store, characters: data});
-			},
-
-			setPlanets: (data) => {
-				const store = getStore();
-				setStore({...store, planets: data});
-			},
-
-			setInfoCharacters: (data) => {
-				const store = getStore();
-				setStore({...store, info: data});
+				if (store.characters.length === 0) {
+					getCharacters()
+						.then(response => {
+							return response.json();
+						})
+						.then(json => {
+							setStore({ characters: json.results });
+						});
+				}
 			},
 			
-			setInfoPlanets: (data) => {
+			getPlanet() {
 				const store = getStore();
-				setStore({...store, info: data});
+				if (store.planets.length === 0) {
+					getPlanets()
+						.then(response => {
+							return response.json();
+						})
+						.then(json => {
+							setStore({ planets: json.results });
+							console.log(store)
+						});
+				}
+			},
+
+			getInfoCha() {
+				const store = getStore();
+				if (store.planets.length === 0) {
+					getInfoCharacter()
+						.then(response => {
+							return response.json();
+						})
+						.then(json => {
+							setStore({ planets: json });
+							console.log(store)
+						});
+				}
 			},
 
 			addFavourites: (favourites) => {

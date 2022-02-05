@@ -1,32 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import {Card} from "../component/Card.jsx";
-import { getPlanets } from "../service/planets.js";
+
 import { Context } from "../store/appContext.js";
-import "../../styles/planets.css";
+
+import "../../styles/horizontalScroll.css";
 
 const Planets = () => {
 
-	const { store, actions } = useContext(Context);
-
-    const getAllPlanets = () => {
-		getPlanets()
-			.then((res) => {
-				return res.json();
-			})
-			.then((data) => {
-				actions.setPlanets(data.results);
-				console.log(store);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
-
-
-
 	useEffect(() => {
-		getAllPlanets();
+		actions.getPlanet();
 	}, []);
+
+	const { store, actions } = useContext(Context);
 
     return (
         <>
@@ -34,7 +19,7 @@ const Planets = () => {
 			<div className="container testimonial-group">
 				<div className="row p-3">
 					{
-					store.planets.map((planets, index) => <Card key={index} name={planets.name} type={planets}/>)
+					store.planets.map((planet, id) => <Card key={id} name={planet.name}/>)
 					}
 				</div>
 			</div>
