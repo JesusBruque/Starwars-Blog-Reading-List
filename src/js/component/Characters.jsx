@@ -20,7 +20,7 @@ const Characters = () => {
 			<div className="container testimonial-group">
 				<div className="row">
 					{
-						store.characters.map((character, index) => <Card key={index} name={character.name} id={character.uid} />)
+						store.characters.map((character, index) => <Card key={index} name={character.name} id={character.uid} item={character} type="people"/>)
 					}
 				</div>
 			</div>

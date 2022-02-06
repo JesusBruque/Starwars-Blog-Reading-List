@@ -1,4 +1,6 @@
-import { getCharacters, getInfoCharacter, getPlanets } from "../service/starWars.js";
+import { getCharacters, getInformation, getPlanets } from "../service/starWars.js";
+
+let url = "https://www.swapi.tech/api/";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -6,10 +8,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			characters: [],
 			planets: [],
 			favourites: [],
+			info: [],
 			
 		},
 		actions: {
-			getCharacter() {
+			getCharacter: () => {
 				const store = getStore();
 				if (store.characters.length === 0) {
 					getCharacters()
@@ -18,11 +21,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 						})
 						.then(json => {
 							setStore({ characters: json.results });
+						})
+						.catch((err) => {
+							console.log(err);
 						});
 				}
 			},
 			
-			getPlanet() {
+			getPlanet: () => { 
 				const store = getStore();
 				if (store.planets.length === 0) {
 					getPlanets()
@@ -31,30 +37,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 						})
 						.then(json => {
 							setStore({ planets: json.results });
-							console.log(store)
-						});
-				}
-			},
-
-			getInfoCha() {
-				const store = getStore();
-				if (store.planets.length === 0) {
-					getInfoCharacter()
-						.then(response => {
-							return response.json();
 						})
-						.then(json => {
-							setStore({ planets: json });
-							console.log(store)
+						.catch((err) => {
+							console.log(err);
 						});
 				}
 			},
-
-			addFavourites: (favourites) => {
+			
+			getInfo: (type, id) => {
 				const store = getStore();
-				setStore({...store, favourites: [...store.favourites, favourites]})
-				console.log(store);
-			}
+				console.log(`${url}${type}/${id}`);
+				getInformation(`${url}${type}/${id}`)
+				.then(res => {
+					return res.json();
+				})
+				.then(data => {
+					const {result}=data;
+					setStore({ info: result.properties });
+					console.log(store)
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+			
+			},
 		}
 	};
 };

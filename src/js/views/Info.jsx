@@ -2,17 +2,14 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext.js";
 import { useParams } from "react-router-dom";
 
-const InfoCharacter = () => {
+const Info = () => {
 
     useEffect(() => {
-		actions.getCharacter();
+		actions.getInfo((type,id));
 	}, []);
 
-    const params = useParams();
+    const {type,id} = useParams();
     const { store, actions } = useContext(Context);
-
-    let people = store.characters[params.id];
-    console.log(people);
 
     return (
         <>
@@ -27,7 +24,7 @@ const InfoCharacter = () => {
                     </div>
                     <div className="col-md-8 m-auto p-auto justify-content-center row">
                         <div className="card-body col-3 mx-auto">
-                            <h4 className="card-title text-center">{people.name}</h4>
+                            <h4 className="card-title text-center">{}</h4>
                             <p className="text-center">
                                 There are many variations of passages of Lorem Ipsum available,
                                 but the majority have suffered alteration in some form, by
@@ -40,16 +37,16 @@ const InfoCharacter = () => {
                     </div>
                 </div>
                 <div className="card-footer border-danger bg-white row text-danger mt-2">
-                    <div className="col-sm-2">Name: {people.name}</div>
-                    <div className="col-sm-2">Birth Year: {people.birth_year}</div>
-                    <div className="col-sm-2">Gender: {people.gender}</div>
-                    <div className="col-sm-2">Height: {people.height} cm</div>
-                    <div className="col-sm-2">Skin Color: {people.skin_color}</div>
-                    <div className="col-sm-2">Eye Color: {people.eye_color}</div>
+                    <div className="col-sm-2">Name: {}</div>
+                    <div className="col-sm-2">Birth Year: {}</div>
+                    <div className="col-sm-2">Gender: {}</div>
+                    <div className="col-sm-2">Height: {} cm</div>
+                    <div className="col-sm-2">Skin Color: {}</div>
+                    <div className="col-sm-2">Eye Color: {}</div>
                 </div>
             </div>
         </>
     );
 };
 
-export default InfoCharacter;
+export default Info;

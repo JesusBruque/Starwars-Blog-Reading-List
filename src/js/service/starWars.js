@@ -10,7 +10,6 @@ export const getPlanets = () => {
 	return fetch(url);
 };
 
-export const getInfoCharacter = () => {
-	const url = URL + "/people/" + [params.id]
-	return fectch(url)
-}
+export const getInformation = (url) => {
+	return fetch(url)
+};
