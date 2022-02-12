@@ -5,10 +5,10 @@ import { Context } from "../store/appContext.js";
 
 import "../../styles/horizontalScroll.css";
 
-const Characters = () => {
+const Vehicles = () => {
 
 	useEffect(() => {
-		actions.getCharacter();
+		actions.getVehicle();
 	}, []);
 
 	const { store, actions } = useContext(Context);
@@ -17,11 +17,11 @@ const Characters = () => {
 
 	return (
 		<>
-			<h1 className="text-danger">Characters</h1>
+			<h1 className="text-danger">Vehicles</h1>
 			<div className="container testimonial-group">
 				<div className="row">
 					{
-						store.characters.map((character, index) => <Card key={index} name={character.name} id={character.uid} type="people"/>)
+						store.vehicles.map((vehicles, index) => <Card key={index} name={vehicles.name} id={vehicles.uid} type="vehicles"/>)
 					}
 				</div>
 			</div>
@@ -31,4 +31,4 @@ const Characters = () => {
 	)
 };
 
-export default Characters;
+export default Vehicles;

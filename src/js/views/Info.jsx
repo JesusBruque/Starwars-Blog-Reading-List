@@ -4,12 +4,51 @@ import { useParams } from "react-router-dom";
 
 const Info = () => {
 
-    useEffect(() => {
-		actions.getInfo((type,id));
-	}, []);
-
     const {type,id} = useParams();
     const { store, actions } = useContext(Context);
+
+    useEffect(() => {
+		actions.getInfo(type,id);
+	}, []);
+
+    const printInfo = () => {
+        if (type == "people"){
+            return(
+                <div className="card-footer border-danger bg-white row text-danger mt-2">
+                    <div className="col-sm-2">Name: {store.info.name}</div>
+                    <div className="col-sm-2">Birth Year: {store.info.birth_year}</div>
+                    <div className="col-sm-2">Gender: {store.info.gender}</div>
+                    <div className="col-sm-2">Height: {store.info.height} cm</div>
+                    <div className="col-sm-2">Skin Color: {store.info.skin_color}</div>
+                    <div className="col-sm-2">Eye Color: {store.info.eye_color}</div>
+                </div>
+            )
+            
+        } else if(type == "planets") {
+            return(
+                <div className="card-footer border-danger bg-white row text-danger mt-2">
+                    <div className="col-sm-2">Name: {store.info.name}</div>
+                    <div className="col-sm-2">Climate: {store.info.climate}</div>
+                    <div className="col-sm-2">Diameter: {store.info.diameter} km</div>
+                    <div className="col-sm-2">Orbital Period: {store.info.orbital_period} hours</div>
+                    <div className="col-sm-2">Rotation Period: {store.info.rotation_period} hours</div>
+                    <div className="col-sm-2">Terrain: {store.info.terrain}</div>
+                </div>
+            )
+        } else{
+            return(
+                <div className="card-footer border-danger bg-white row text-danger mt-2">
+                    <div className="col-sm-2">Name: {store.info.name}</div>
+                    <div className="col-sm-2">Model: {store.info.model}</div>
+                    <div className="col-sm-2">Cargo Capacity: {store.info.cargo_capacity}</div>
+                    <div className="col-sm-2">Length: {store.info.length} m</div>
+                    <div className="col-sm-2">Vehicle Class: {store.info.vehicle_class}</div>
+                    <div className="col-sm-2">Manufacturer: {store.info.manufacturer}</div>
+                </div>
+            )
+        }
+
+    }
 
     return (
         <>
@@ -36,14 +75,7 @@ const Info = () => {
                         </div>
                     </div>
                 </div>
-                <div className="card-footer border-danger bg-white row text-danger mt-2">
-                    <div className="col-sm-2">Name: {}</div>
-                    <div className="col-sm-2">Birth Year: {}</div>
-                    <div className="col-sm-2">Gender: {}</div>
-                    <div className="col-sm-2">Height: {} cm</div>
-                    <div className="col-sm-2">Skin Color: {}</div>
-                    <div className="col-sm-2">Eye Color: {}</div>
-                </div>
+                {printInfo()}
             </div>
         </>
     );

@@ -19,7 +19,7 @@ const Planets = () => {
 			<div className="container testimonial-group">
 				<div className="row p-3">
 					{
-					store.planets.map((planet, id) => <Card key={id} name={planet.name} id={planet.uid} type={planet}/>)
+					store.planets.map((planet, id) => <Card key={id} name={planet.name} id={planet.uid} type="planets"/>)
 					}
 				</div>
 			</div>

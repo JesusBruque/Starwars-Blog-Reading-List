@@ -1,12 +1,11 @@
-import { getCharacters, getInformation, getPlanets } from "../service/starWars.js";
-
-let url = "https://www.swapi.tech/api/";
+import { getCharacters, getVehicles, getPlanets, getInformation} from "../service/starWars.js";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			characters: [],
 			planets: [],
+			vehicles: [],
 			favourites: [],
 			info: [],
 			
@@ -32,8 +31,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				if (store.planets.length === 0) {
 					getPlanets()
-						.then(response => {
-							return response.json();
+						.then(res => {
+							return res.json();
 						})
 						.then(json => {
 							setStore({ planets: json.results });
@@ -43,16 +42,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 				}
 			},
+
+			getVehicle: () => { 
+				const store = getStore();
+				if (store.vehicles.length === 0) {
+					getVehicles()
+						.then(res => {
+							return res.json();
+						})
+						.then(json => {
+							setStore({ vehicles: json.results });
+						})
+						.catch((err) => {
+							console.log(err);
+						});
+				}
+			},
 			
 			getInfo: (type, id) => {
 				const store = getStore();
-				console.log(`${url}${type}/${id}`);
-				getInformation(`${url}${type}/${id}`)
+				console.log(type, id);
+				getInformation(type, id)
+				
 				.then(res => {
 					return res.json();
 				})
 				.then(data => {
 					const {result}=data;
+					console.log(data)
 					setStore({ info: result.properties });
 					console.log(store)
 				})
