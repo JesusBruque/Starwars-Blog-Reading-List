@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			characters: [],
 			planets: [],
 			vehicles: [],
-			favourites: [],
+			favorites: [],
 			info: [],
 			
 		},
@@ -78,6 +78,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			
 			},
+
+			addFavorites: (type, id) => {
+				const store = getStore();
+				let data = {};
+				data.id = id;
+				data.type = type;
+				if (type === "character") {
+					data.name = store.characters[id-1].name;
+					data.url = `/${type}/${id}`;
+				} else if (type === "planet"){
+					data.name = store.planets[id-1].name;
+					data.url = `/${type}/${id}`;
+				} 
+				setStore({...store, favorites: [...store.favorites, data]});
+			},
+
+			deleteFavorites: (name) => {
+				const store = getStore();
+				const data = store.favorites.filter((f) => (f.name !== name));
+				setStore({...store, favorites: data});
+			}
 		}
 	};
 };

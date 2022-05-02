@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import Proptypes from "prop-types";
 import { Link } from "react-router-dom";
 import "../../styles/card.css";
+import { Context } from "../store/appContext.js";
 
 export const Card = (props) => {
+
+	const { store, actions } = useContext(Context);    
+
+	const handleLike = (e) => {
+        // if ( store.favorites(f => f.name === e.target.value) ) {
+        //     actions.deleteFavorites(e.target.value);}
+        // else { 
+		actions.addFavorites(e.target.value, e.target.id) 
+    }
 
 	return (
 		<div className="card col-3 d-inline-block m-3 p-auto" style={{ width: "300px", height: "450px" }}>
@@ -16,9 +26,7 @@ export const Card = (props) => {
 					<button className="btn btn-outline-primary btn-outline-primary:hover btn-outline-primary:active btn-outline-primary:visited">
 						<Link id="a" to={`/info/${props.type}/${props.id}`}>Learn more!</Link>
 					</button>
-					<button className="btn btn-outline-warning btn-outline-warning:hover btn-outline-warning:active btn-outline-warning:visited"><svg id="heart" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-heart text-warning" viewBox="0 0 16 16">
-						<path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-					</svg></button>
+					<button onClick={handleLike} title={props.type} id={props.id} value={props.name} className="btn btn-outline-warning btn-outline-warning:hover btn-outline-warning:active btn-outline-warning:visited">♡</button>
 				</div>
 			</div>
 		</div>
